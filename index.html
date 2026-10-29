@@ -54,8 +54,8 @@
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
                     <span class="bg-amber-500 text-zinc-950 text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider">Банкетное обслуживание</span>
-                    <h3 class="font-serif-heading font-extrabold text-lg text-amber-400 mt-2 mb-1">Предварительный заказ блюд на праздник</h3>
-                    <p class="text-xs text-zinc-300">Банкетные позиции бронируются заранее через сайт или администратора.</p>
+                    <h3 class="font-serif-heading font-extrabold text-lg text-amber-400 mt-2 mb-1">Соберите предварительный заказ на праздник</h3>
+                    <p class="text-xs text-zinc-300">Добавьте блюда в корзину и отправьте заявку — администратор свяжется с вами для уточнения деталей.</p>
                 </div>
                 <a href="tel:+375296638889" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 px-5 py-2.5 rounded-2xl text-xs font-black shadow-lg transition whitespace-nowrap">
                     📞 Позвонить
@@ -146,7 +146,6 @@
                             @caferomashka_
                         </a>
                     </div>
-                    <!-- Юридическая ссылка в футере -->
                     <div>
                         <a href="#" onclick="openPrivacyModal(); return false;" class="text-[11px] text-zinc-500 hover:text-zinc-300 underline transition">
                             Политика в отношении обработки персональных данных
@@ -186,7 +185,7 @@
                 <p class="font-black text-lg text-amber-400" id="floating-total">0.00 BYN</p>
             </div>
             <button onclick="openCart()" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 px-6 py-3 rounded-2xl text-sm font-black shadow-lg transition flex items-center space-x-2">
-                <span>Оформить заказ</span>
+                <span>Перейти в корзину</span>
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
@@ -202,7 +201,7 @@
     <div id="cart-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="bg-zinc-900 border border-zinc-800 w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
             <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
-                <h3 class="font-serif-heading font-bold text-lg text-amber-400">Ваш заказ</h3>
+                <h3 class="font-serif-heading font-bold text-lg text-amber-400">Ваш заказ / Банкетная заявка</h3>
                 <button onclick="closeCart()" class="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white font-bold">✕</button>
             </div>
 
@@ -212,17 +211,20 @@
 
             <div class="p-4 border-t border-zinc-800 bg-zinc-950 space-y-3">
                 <div class="flex bg-zinc-900 p-1.5 rounded-2xl border border-zinc-800">
-                    <button onclick="setDeliveryType('pickup')" id="btn-pickup" class="flex-1 py-2.5 text-xs font-extrabold rounded-xl transition bg-amber-500 text-zinc-950">Самовывоз</button>
-                    <button onclick="setDeliveryType('delivery')" id="btn-delivery" class="flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400">Доставка (от 30 руб.)</button>
+                    <button onclick="setOrderType('delivery')" id="btn-delivery-type" class="flex-1 py-2.5 text-xs font-extrabold rounded-xl transition bg-amber-500 text-zinc-950">Доставка / Самовывоз</button>
+                    <button onclick="setOrderType('banquet')" id="btn-banquet-type" class="flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400">Заявка на банкет</button>
                 </div>
 
                 <div id="delivery-info" class="text-xs text-amber-400 bg-amber-500/10 p-2.5 rounded-2xl border border-amber-500/30 hidden">
-                    До минимальной суммы доставки не хватает: <span id="delivery-left" class="font-black">30.00</span> руб.
+                    До минимальной суммы доставки (30 руб.) не хватает: <span id="delivery-left" class="font-black">30.00</span> руб.
                 </div>
 
                 <div class="space-y-2">
                     <input type="text" id="customer-name" placeholder="Ваше имя *" class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium text-zinc-100">
                     <input type="tel" id="customer-phone" placeholder="+375 (XX) XXX-XX-XX *" class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium text-zinc-100">
+                    <div id="banquet-guests-field" class="hidden">
+                        <input type="number" id="customer-guests" placeholder="Примерное количество гостей (например, 10)" class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium text-zinc-100">
+                    </div>
                 </div>
 
                 <!-- Чекбокс согласия с персональными данными (Закон РБ) -->
@@ -234,56 +236,12 @@
                 </div>
 
                 <div class="flex justify-between items-center text-lg font-black pt-1">
-                    <span class="text-zinc-300">Итого:</span>
+                    <span class="text-zinc-300">Предварительная сумма:</span>
                     <span id="cart-total-price" class="text-amber-400">0.00 BYN</span>
                 </div>
 
                 <button onclick="submitOrder()" id="submit-btn" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 py-3 rounded-2xl font-black text-sm shadow-lg transition">
                     Отправить заказ
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Banquet Inquiry Modal -->
-    <div id="banquet-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-        <div class="bg-zinc-900 border border-zinc-800 w-full sm:max-w-lg rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
-                <h3 class="font-serif-heading font-bold text-lg text-amber-400">Заявка на банкет</h3>
-                <button onclick="closeBanquetModal()" class="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white font-bold">✕</button>
-            </div>
-
-            <div class="p-5 space-y-4 overflow-y-auto">
-                <p class="text-xs text-zinc-400">
-                    Блюдо: <span id="banquet-dish-name" class="font-bold text-amber-400"></span><br>
-                    Оставьте имя и телефон для расчета на вашу компанию:
-                </p>
-
-                <div class="space-y-3">
-                    <div>
-                        <label class="text-xs text-zinc-400 block mb-1">Ваше имя *</label>
-                        <input type="text" id="banquet-name" placeholder="Иван" class="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-2xl text-sm text-zinc-100">
-                    </div>
-                    <div>
-                        <label class="text-xs text-zinc-400 block mb-1">Телефон для связи *</label>
-                        <input type="tel" id="banquet-phone" placeholder="+375 (29) 123-45-67" class="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-2xl text-sm text-zinc-100">
-                    </div>
-                    <div>
-                        <label class="text-xs text-zinc-400 block mb-1">Количество гостей</label>
-                        <input type="number" id="banquet-guests" placeholder="10" class="w-full px-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-2xl text-sm text-zinc-100">
-                    </div>
-                </div>
-
-                <!-- Чекбокс согласия с персональными данными для банкета -->
-                <div class="flex items-start space-x-2.5 pt-1">
-                    <input type="checkbox" id="privacy-policy-banquet" class="mt-0.5 w-4 h-4 rounded accent-amber-500 cursor-pointer">
-                    <label for="privacy-policy-banquet" class="text-[11px] text-zinc-400 leading-tight cursor-pointer">
-                        Я даю согласие на обработку моих персональных данных в соответствии с <span onclick="openPrivacyModal()" class="text-amber-400 underline">политикой конфиденциальности</span> *
-                    </label>
-                </div>
-
-                <button onclick="submitBanquetInquiry()" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 py-3.5 rounded-2xl font-black text-sm shadow-lg transition mt-2">
-                    Отправить заявку
                 </button>
             </div>
         </div>
@@ -389,8 +347,11 @@
         let currentMenuType = 'main';
         let currentCategory = 'pizza';
         let cart = {};
-        let deliveryType = 'pickup';
-        let selectedBanquetDish = '';
+        let orderType = 'delivery'; // 'delivery' or 'banquet'
+
+        function getAllDishes() {
+            return [...menuData.main.dishes, ...menuData.banquet.dishes];
+        }
 
         function switchMenuType(type) {
             currentMenuType = type;
@@ -440,8 +401,6 @@
                 return;
             }
 
-            const isBanquet = currentMenuType === 'banquet';
-
             container.innerHTML = dishes.map(dish => `
                 <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden flex flex-col justify-between hover:border-zinc-700 transition shadow-lg group">
                     <div class="relative h-44 overflow-hidden bg-zinc-800">
@@ -454,15 +413,9 @@
                         </div>
                         <div class="flex items-center justify-between pt-2 border-t border-zinc-800/80">
                             <span class="font-black text-lg text-amber-400">${dish.price.toFixed(2)} BYN</span>
-                            ${isBanquet ? `
-                                <button onclick="openBanquetModal('${dish.name}')" class="bg-zinc-800 hover:bg-amber-500 hover:text-zinc-950 text-amber-400 border border-amber-500/30 px-4 py-2 rounded-xl text-xs font-black transition">
-                                    Заказать банкет
-                                </button>
-                            ` : `
-                                <button onclick="addToCart(${dish.id})" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 px-5 py-2 rounded-xl text-xs font-black transition">
-                                    + Заказать
-                                </button>
-                            `}
+                            <button onclick="addToCart(${dish.id})" class="bg-amber-500 hover:bg-amber-400 text-zinc-950 px-4 py-2 rounded-xl text-xs font-black transition">
+                                + Добавить в корзину
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -472,7 +425,8 @@
         function addToCart(id) {
             cart[id] = (cart[id] || 0) + 1;
             updateCartUI();
-            const dish = menuData.main.dishes.find(d => d.id === id);
+            const allDishes = getAllDishes();
+            const dish = allDishes.find(d => d.id === id);
             showToast(`Добавлено: ${dish.name}`);
         }
 
@@ -487,13 +441,14 @@
             const floatingBar = document.getElementById('floating-bar');
             const floatingTotal = document.getElementById('floating-total');
             const itemsContainer = document.getElementById('cart-items');
+            const allDishes = getAllDishes();
 
             let totalCount = 0;
             let totalPrice = 0;
             let html = '';
 
             for (const [id, count] of Object.entries(cart)) {
-                const dish = menuData.main.dishes.find(d => d.id == id);
+                const dish = allDishes.find(d => d.id == id);
                 if (!dish) continue;
                 totalCount += count;
                 totalPrice += dish.price * count;
@@ -529,35 +484,37 @@
             const deliveryInfo = document.getElementById('delivery-info');
             const submitBtn = document.getElementById('submit-btn');
 
-            if (deliveryType === 'delivery') {
+            if (orderType === 'delivery') {
                 deliveryInfo.classList.remove('hidden');
                 const diff = 30 - totalPrice;
                 if (diff > 0) {
                     document.getElementById('delivery-left').innerText = diff.toFixed(2);
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    submitBtn.disabled = false; // Позволяем отправить, но с предупреждением или оставим активным
                 } else {
                     deliveryInfo.classList.add('hidden');
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 }
             } else {
                 deliveryInfo.classList.add('hidden');
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             }
         }
 
-        function setDeliveryType(type) {
-            deliveryType = type;
-            const btnPickup = document.getElementById('btn-pickup');
-            const btnDelivery = document.getElementById('btn-delivery');
-            if(type === 'pickup') {
-                btnPickup.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition bg-amber-500 text-zinc-950";
-                btnDelivery.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400";
-            } else {
+        function setOrderType(type) {
+            orderType = type;
+            const btnDelivery = document.getElementById('btn-delivery-type');
+            const btnBanquet = document.getElementById('btn-banquet-type');
+            const banquetGuestsField = document.getElementById('banquet-guests-field');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if(type === 'delivery') {
                 btnDelivery.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition bg-amber-500 text-zinc-950";
-                btnPickup.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400";
+                btnBanquet.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400";
+                banquetGuestsField.classList.add('hidden');
+                submitBtn.innerText = 'Отправить заказ';
+            } else {
+                btnBanquet.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition bg-amber-500 text-zinc-950";
+                btnDelivery.className = "flex-1 py-2.5 text-xs font-extrabold rounded-xl transition text-zinc-400";
+                banquetGuestsField.classList.remove('hidden');
+                submitBtn.innerText = 'Отправить заявку на банкет';
             }
             updateCartUI();
         }
@@ -578,16 +535,6 @@
 
         function closeCart() {
             document.getElementById('cart-modal').classList.add('hidden');
-        }
-
-        function openBanquetModal(dishName) {
-            selectedBanquetDish = dishName;
-            document.getElementById('banquet-dish-name').innerText = dishName;
-            document.getElementById('banquet-modal').classList.remove('hidden');
-        }
-
-        function closeBanquetModal() {
-            document.getElementById('banquet-modal').classList.add('hidden');
         }
 
         function openPrivacyModal() {
@@ -612,26 +559,16 @@
 
             if (Object.keys(cart).length === 0) return alert('Ваша корзина пуста');
 
-            alert(`Спасибо за заказ, ${name}! Ваша заявка отправлена.`);
+            if (orderType === 'delivery') {
+                alert(`Спасибо за заказ, ${name}! Ваша заявка успешно отправлена.`);
+            } else {
+                const guests = document.getElementById('customer-guests').value.trim() || 'не указано';
+                alert(`Спасибо, ${name}! Ваша банкетная заявка (гостей: ${guests}) с предварительным меню принята. Администратор свяжется с вами для согласования.`);
+            }
+
             cart = {};
             updateCartUI();
             closeCart();
-        }
-
-        function submitBanquetInquiry() {
-            const name = document.getElementById('banquet-name').value.trim();
-            const phone = document.getElementById('banquet-phone').value.trim();
-            const privacyChecked = document.getElementById('privacy-policy-banquet').checked;
-
-            if (!name) return alert('Введите ваше имя');
-
-            const phoneRegex = /^(\+375|80)\s?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
-            if (!phoneRegex.test(phone)) return alert('Введите корректный номер телефона');
-
-            if (!privacyChecked) return alert('Необходимо подтвердить согласие на обработку персональных данных');
-
-            alert(`Спасибо, ${name}! Заявка на «${selectedBanquetDish}» принята. Администратор свяжется с вами.`);
-            closeBanquetModal();
         }
 
         // Run setup
