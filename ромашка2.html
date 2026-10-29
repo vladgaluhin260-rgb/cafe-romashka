@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кафе «Ромашка» | Домашняя кухня, Доставка & Банкеты в Могилёве</title>
+    <meta name="description" content="Уютное кафе «Ромашка» в Могилёве (ул. Ромашко, 5). Вкусные белорусские драники, пицца, мини-пицца, шаурма, пельмени ручной лепки и банкетное меню. Звоните: +375 (29) 663-88-89">
+    
+    <!-- Open Graph (Для соцсетей) -->
+    <meta property="og:type" content="restaurant">
+    <meta property="og:title" content="Кафе «Ромашка» в Могилёве — Банкеты и Домашняя кухня">
+    <meta property="og:description" content="Организация банкетов, праздников и семейных ужинов. Ул. Ромашко, 5. Звоните: +375 (29) 663-88-89">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-serif-custom { font-family: 'Playfair Display', serif; }
+        .bg-daisy { background-color: #FAF8F5; }
+    </style>
+
+    <!-- Микроразметка Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Ромашка",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "улица Ромашко, 5",
+        "addressLocality": "Могилёв",
+        "addressCountry": "BY"
+      },
+      "telephone": "+375296638889",
+      "openingHours": "Mo-Su 11:00-23:00"
+    }
+    </script>
+</head>
+<body class="bg-daisy text-gray-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Навигация -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 py-2 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full border border-amber-300 overflow-hidden bg-amber-50 flex items-center justify-center shadow-inner">
+                    <span class="text-2xl">🌼</span>
+                </div>
+                <div>
+                    <span class="font-serif-custom text-xl md:text-2xl font-bold text-gray-900 tracking-wide block leading-none">Ромашка</span>
+                    <span class="text-xs text-gray-500">Уютное кафе • Домашняя кухня • Могилёв</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex space-x-6 font-medium text-sm text-gray-600">
+                <a href="#about" class="hover:text-amber-600 transition">О нас</a>
+                <a href="#menu" class="hover:text-amber-600 transition">Основное меню</a>
+                <a href="#banket" class="hover:text-amber-600 transition text-amber-600 font-bold">🎉 Банкетное меню</a>
+                <a href="#contacts" class="hover:text-amber-600 transition">Контакты</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+375296638889" class="hidden sm:inline-flex items-center text-xs font-semibold bg-green-50 text-green-800 px-3 py-2 rounded-lg border border-green-200 hover:bg-green-100 transition">
+                    <i class="fa-solid fa-phone mr-2"></i> +375 (29) 663-88-89
+                </a>
+                <button onclick="toggleCart()" class="relative bg-amber-500 text-white p-2.5 rounded-full hover:bg-amber-600 transition shadow-md" aria-label="Корзина предзаказа">
+                    <i class="fa-solid fa-utensils text-sm px-1"></i>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-emerald-700 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Главный баннер -->
+        <section class="relative bg-stone-900 text-white py-20 px-4 text-center overflow-hidden">
+            <div class="absolute inset-0 opacity-40 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="relative z-10 max-w-3xl mx-auto space-y-4">
+                <div class="inline-flex items-center space-x-2 bg-amber-500/20 text-amber-300 border border-amber-400/30 text-xs px-3 py-1 rounded-full uppercase tracking-widest font-semibold">
+                    <span>г. Могилёв • ул. Ромашко, 5</span>
+                </div>
+                <h1 class="font-serif-custom text-4xl md:text-6xl font-bold leading-tight">Кафе «Ромашка» — Доставка &amp; Банкеты</h1>
+                <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto">Доставка от 30 BYN! Вкуснейшая домашняя кухня, драники, пицца, мини-пицца, шаурма и банкетный зал.</p>
+                <div class="pt-4 flex flex-wrap justify-center gap-4">
+                    <a href="#banket" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition flex items-center space-x-2">
+                        <span>🎉 Банкетное меню</span>
+                    </a>
+                    <a href="#menu" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition">Основное меню</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Основное Меню -->
+        <section id="menu" class="max-w-6xl mx-auto px-4 py-12">
+            <div class="text-center mb-8">
+                <h2 class="font-serif-custom text-3xl font-bold text-gray-900">Основное Меню</h2>
+                <p class="text-gray-500 text-sm mt-1">Каждый день для вас — быстро, вкусно и по-домашнему</p>
+            </div>
+
+            <!-- Фильтр категорий -->
+            <div class="flex overflow-x-auto pb-4 mb-8 gap-2 justify-start md:justify-center" id="categories">
+                <!-- Загрузка из JS -->
+            </div>
+
+            <!-- Сетка блюд -->
+            <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Блюда из JS -->
+            </div>
+        </section>
+
+        <!-- БАНКЕТНОЕ МЕНЮ -->
+        <section id="banket" class="bg-stone-900 text-white py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-amber-400 text-xs font-semibold uppercase tracking-widest">Праздники, Юбилеи, Корпоративы</span>
+                    <h2 class="font-serif-custom text-3xl md:text-5xl font-bold mt-2 text-white">🎉 Банкетное Меню</h2>
+                    <p class="text-gray-400 text-sm mt-2">Специальный выбор изысканных холодных закусок, салатов и горячих праздничных блюд по предварительному заказу.</p>
+                </div>
+
+                <!-- Фильтр Банкета -->
+                <div class="flex overflow-x-auto pb-4 mb-8 gap-2 justify-start md:justify-center" id="banket-categories">
+                    <!-- Загрузка категорий банкета из JS -->
+                </div>
+
+                <!-- Сетка Банкетного меню -->
+                <div id="banket-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Загрузка праздничных блюд из JS -->
+                </div>
+
+                <div class="mt-12 p-6 bg-stone-800 rounded-2xl border border-stone-700 text-center max-w-xl mx-auto">
+                    <h3 class="font-bold text-lg text-amber-400 mb-1">Заказ банкета и бронирование зала</h3>
+                    <p class="text-xs text-gray-300 mb-4">Для обсуждения индивидуального меню на праздник звоните администратору:</p>
+                    <a href="tel:+375296638889" class="inline-block bg-amber-500 hover:bg-amber-600 text-white font-bold px-6 py-3 rounded-xl transition">
+                        <i class="fa-solid fa-phone mr-2"></i> +375 (29) 663-88-89
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section id="about" class="bg-white py-12 border-y border-gray-100">
+            <div class="max-w-6xl mx-auto px-4">
+                <h2 class="font-serif-custom text-2xl font-bold text-center text-gray-900 mb-8">Почему выбирают кафе «Ромашка»</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-5 rounded-2xl bg-amber-50/50 border border-amber-100">
+                        <div class="text-4xl mb-3">🚗</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Быстрая доставка</h3>
+                        <p class="text-xs text-gray-600">Доставляем по Могилёву. Минимальная сумма заказа от 30 BYN.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-100">
+                        <div class="text-4xl mb-3">🥟</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Ручная лепка</h3>
+                        <p class="text-xs text-gray-600">Пельмени и вареники собственного производства из свежих продуктов.</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-stone-50 border border-stone-200">
+                        <div class="text-4xl mb-3">🔥</div>
+                        <h3 class="font-bold text-gray-900 mb-1">Мясо на мангале</h3>
+                        <p class="text-xs text-gray-600">Сочный шашлык, рулька в пиве и рёбрышки гриль.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты и Карта -->
+        <section id="contacts" class="max-w-6xl mx-auto px-4 py-12">
+            <div class="bg-stone-900 text-white rounded-3xl overflow-hidden shadow-xl grid lg:grid-cols-2">
+                <div class="p-8 md:p-12 flex flex-col justify-between">
+                    <div>
+                        <span class="text-amber-400 text-xs font-semibold tracking-widest uppercase">Ждём вас в гости</span>
+                        <h2 class="font-serif-custom text-3xl font-bold mt-2 mb-6">Контакты и График работы</h2>
+                        
+                        <div class="space-y-4 text-sm text-gray-300">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-location-dot text-amber-400 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-white">Адрес:</p>
+                                    <p>г. Могилёв, улица Ромашко, 5</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-clock text-amber-400 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-white">Время работы:</p>
+                                    <p>Ежедневно с 11:00 до 23:00</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-phone text-amber-400 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-white">Заказ столов и доставка:</p>
+                                    <p><a href="tel:+375296638889" class="hover:underline text-amber-300 font-bold">+375 (29) 663-88-89</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-gray-800 flex items-center justify-between">
+                        <span class="text-xs text-gray-400">Instagram:</span>
+                        <a href="https://www.instagram.com/caferomashka_" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xs font-semibold px-4 py-2 rounded-lg hover:opacity-90 transition">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span>@caferomashka_</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="h-80 lg:h-auto min-h-[320px] bg-gray-800 relative">
+                    <iframe src="https://yandex.ru/map-widget/v1/?orgstr=219964752927" width="100%" height="100%" frameborder="0" allowfullscreen="true" class="w-full h-full" title="Карта проезда к кафе Ромашка"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Всплывающее уведомление при добавлении в корзину -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-stone-900 text-white p-4 rounded-2xl shadow-2xl border border-amber-500/30 flex items-center space-x-4 max-w-sm">
+            <div class="bg-amber-500 text-white rounded-full p-2.5 flex items-center justify-center">
+                <i class="fa-solid fa-basket-shopping text-base"></i>
+            </div>
+            <div class="flex-grow">
+                <p id="toast-title" class="text-xs text-amber-400 font-medium">Добавлено в корзину!</p>
+                <p id="toast-message" class="text-xs font-bold text-white truncate max-w-[180px]">Блюдо</p>
+            </div>
+            <button onclick="toggleCart()" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-3 py-2 rounded-xl transition whitespace-nowrap shadow-sm pointer-events-auto">
+                В корзину
+            </button>
+        </div>
+    </div>
+
+    <!-- Корзина -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="font-bold text-lg text-gray-900">Оформление заказа</h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+                </div>
+
+                <!-- Выбор формата получения -->
+                <div class="grid grid-cols-2 gap-2 my-4 bg-gray-100 p-1 rounded-xl">
+                    <button id="type-pickup" onclick="setOrderType('pickup')" class="py-2 text-xs font-bold rounded-lg transition bg-white shadow-sm text-gray-900">
+                        🏃‍♂️ Самовывоз
+                    </button>
+                    <button id="type-delivery" onclick="setOrderType('delivery')" class="py-2 text-xs font-bold rounded-lg transition text-gray-500">
+                        🚚 Доставка
+                    </button>
+                </div>
+
+                <!-- Уведомление о минималке доставки -->
+                <div id="delivery-info" class="hidden mb-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800">
+                    <div class="flex items-center space-x-2 font-bold mb-1">
+                        <i class="fa-solid fa-truck"></i>
+                        <span>Минимальная сумма доставки: 30.00 BYN</span>
+                    </div>
+                    <p id="delivery-status-text">Добавьте блюд в корзину для оформления курьера.</p>
+                </div>
+
+                <div id="cart-items" class="py-2 divide-y divide-gray-100"></div>
+            </div>
+
+            <div class="pt-4 border-t space-y-3">
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Итого:</span>
+                    <span id="cart-total" class="text-emerald-700">0.00 BYN</span>
+                </div>
+
+                <!-- Поля ввода данных покупателя -->
+                <div class="space-y-2">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Ваше имя *</label>
+                        <input type="text" id="cust-name" placeholder="Иван" class="w-full p-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-amber-500">
+                        <p id="name-error" class="text-[10px] text-red-500 mt-0.5 hidden">Введите ваше имя</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Номер телефона (Беларусь) *</label>
+                        <input type="tel" id="cust-phone" placeholder="+375 (29) 123-45-67" class="w-full p-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-amber-500">
+                        <p id="phone-error" class="text-[10px] text-red-500 mt-0.5 hidden">Введите верный номер (+375 ...)</p>
+                    </div>
+
+                    <div id="address-field" class="hidden">
+                        <label class="block text-xs font-semibold text-gray-600 mb-1">Адрес доставки в Могилёве *</label>
+                        <input type="text" id="cust-address" placeholder="Улица, дом, квартира" class="w-full p-2.5 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-amber-500">
+                        <p id="address-error" class="text-[10px] text-red-500 mt-0.5 hidden">Укажите адрес для курьера</p>
+                    </div>
+                </div>
+
+                <button id="submit-order-btn" onclick="sendOrder()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-xl shadow-lg transition">
+                    Подтвердить заказ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт логики и данных -->
+    <script>
+        // Данные ОСНОВНОГО МЕНЮ
+        const menuData = [
+            // Пицца
+            { cat: 'pizza', name: 'Пицца «Гавайская»', weight: '500 гр', price: 14.00, desc: 'Ветчина, ананас, сыр, чесночное масло, соус, зелень' },
+            { cat: 'pizza', name: 'Пицца «Грибная»', weight: '500 гр', price: 14.00, desc: 'Бекон, грибы шампиньоны, сыр, чесночное масло, соус карри, зелень' },
+            { cat: 'pizza', name: 'Пицца «Индийская»', weight: '500 гр', price: 15.00, desc: 'Курица, бекон, сыр, чесночное масло, соус, зелень' },
+            { cat: 'pizza', name: 'Пицца «Цыплёнок Ранч»', weight: '500 гр', price: 15.00, desc: 'Курица, бекон, помидор, сыр, лук, чесночное масло, соус ранч, зелень' },
+            { cat: 'pizza', name: 'Пицца «Итальянская»', weight: '500 гр', price: 15.00, desc: 'Ветчина, салями, грибы шампиньоны, помидор, перец болгарский, сыр, чесночное масло' },
+            { cat: 'pizza', name: 'Пицца «Маргарита»', weight: '500 гр', price: 14.00, desc: 'Помидор, сыр, чесночное масло, соус, зелень' },
+            { cat: 'pizza', name: 'Пицца «Мясная»', weight: '500 гр', price: 15.00, desc: 'Бекон, салями, курица, сыр, перец болгарский, лук, чесночное масло, соус, зелень' },
+            { cat: 'pizza', name: 'Пицца «Пепперони»', weight: '500 гр', price: 16.00, desc: 'Пепперони, сыр, чесночное масло, соус, зелень' },
+            
+            // Мини-пиццы
+            { cat: 'mini_pizza', name: 'Мини-пицца «Карбонара»', weight: '250 гр', price: 6.00, desc: 'Бекон, сыр, яйцо, лук, чесночное масло, соус «Цезарь»' },
+            { cat: 'mini_pizza', name: 'Мини-пицца «Грибная»', weight: '250 гр', price: 6.00, desc: 'Бекон, грибы шампиньоны, сыр, чесночное масло, соус карри' },
+            { cat: 'mini_pizza', name: 'Мини-пицца «Цыплёнок Ранч»', weight: '250 гр', price: 6.50, desc: 'Курица, бекон, помидор, сыр, лук красный, чесночное масло, соус ранч' },
+            { cat: 'mini_pizza', name: 'Мини-пицца «Мясная»', weight: '250 гр', price: 6.50, desc: 'Бекон, салями, курица, сыр, перец болгарский, чесночное масло, соус' },
+            { cat: 'mini_pizza', name: 'Мини-пицца «Пепперони»', weight: '250 гр', price: 7.00, desc: 'Пепперони, сыр, чесночное масло, соус' },
+
+            // Шаурма
+            { cat: 'shawarma', name: 'Шаурма «Классическая»', weight: '380 гр', price: 8.00, desc: 'Курица, помидор, огурец маринованный, капуста, лук, лаваш, чесночный соус' },
+            { cat: 'shawarma', name: 'Шаурма «Бекон-грибы»', weight: '400 гр', price: 9.00, desc: 'Курица, бекон, шампиньоны, капуста, лук, лаваш, сыр, кетчуп, чесночный соус' },
+            { cat: 'shawarma', name: 'Шаурма «С беконом»', weight: '390 гр', price: 9.00, desc: 'Курица, бекон, помидор, капуста, сыр, лаваш, чесночный соус' },
+            { cat: 'shawarma', name: 'Шаурма «С картошкой»', weight: '410 гр', price: 8.50, desc: 'Курица, картофель-дольки, помидор, капуста, сыр, лаваш, чесночный соус, сырный соус' },
+            { cat: 'shawarma', name: 'Шаурма «С морковкой»', weight: '380 гр', price: 8.00, desc: 'Курица, морковь по-корейски, огурец свежий, капуста, лук, лаваш, чесночный соус' },
+
+            // Горячее & Драники
+            { cat: 'hot', name: 'Драники с курицей и грибами', weight: '350 гр', price: 12.00, desc: 'Драники, курица, шампиньоны, сыр, сметана, зелень' },
+            { cat: 'hot', name: 'Драники со свиными ушами', weight: '200/190/50 гр', price: 11.00, desc: 'Драники, уши свиные, соус, зелень' },
+            { cat: 'hot', name: 'Драники со свининой, грибами и луком', weight: '350 гр', price: 13.00, desc: 'Драники, свинина, шампиньоны, лук, сыр, сметана, зелень' },
+            { cat: 'hot', name: 'Горшочки «По-деревенски» со свининой', weight: '300 гр', price: 13.00, desc: 'Свинина с картофелем в сметанном соусе, шампиньоны, зелень' },
+            { cat: 'hot', name: 'Горшочки «По-деревенски» с курицей', weight: '300 гр', price: 13.00, desc: 'Курица с картофелем в сметанном соусе, шампиньоны, зелень' },
+            { cat: 'hot', name: 'Уши свиные запеченные с картошкой', weight: '100/65/100/12 гр', price: 10.00, desc: 'Уши свиные запеченные, картофель, капуста квашеная' },
+            { cat: 'hot', name: 'Стейк из корейки на кости', weight: '100/50/7 гр', price: 8.00, desc: 'Свинина, мёд, соевый соус, зелень, клюквенный соус (цена за 100г)' },
+            { cat: 'hot', name: 'Стейк из форели', weight: '100/15/10 гр', price: 10.00, desc: 'Форель, специи, лимон, салатный лист, зелень (цена за 100г)' },
+            { cat: 'hot', name: 'Горбуша, запечённая с сыром', weight: '150/25 гр', price: 10.00, desc: 'Горбуша, сыр, майонез, яйцо, лимон, салатный лист, зелень' },
+            { cat: 'hot', name: 'Мачанка с блинами', weight: '250/135/20 гр', price: 13.00, desc: 'Блины, свинина с соусом и специями, помидор, зелень' },
+            { cat: 'hot', name: 'Сковородка «Свинина с грибами»', weight: '200/150/30 гр', price: 13.00, desc: 'Свинина, шампиньоны, картофель, лук, огурец маринованный, зелень' },
+            { cat: 'hot', name: 'Сковородка «Говядина с овощами»', weight: '200/230 гр', price: 13.00, desc: 'Говядина, картофель, помидоры, морковь по-корейски, фасоль стручковая' },
+            { cat: 'hot', name: 'Картофельная пицца', weight: '800 гр', price: 16.00, desc: 'Картофель, копчёные колбаски, ветчина, шампиньоны, лук, сыр, соус' },
+            { cat: 'hot', name: 'Шашлычок на шпажке', weight: '150/10 гр', price: 10.00, desc: 'Курица, перец болгарский, соус чесночный, салатный лист' },
+            { cat: 'hot', name: 'Куриное филе с грибами', weight: '150/20/5 гр', price: 10.00, desc: 'Курица, шампиньоны, сыр, помидор, салатный лист, зелень' },
+            { cat: 'hot', name: 'Кармашек из куриного филе', weight: '140/50/5 гр', price: 10.00, desc: 'Курица, помидор, специи, соевый соус, грибной соус, зелень' },
+            { cat: 'hot', name: 'Омлет с ветчиной и помидорами', weight: '230 гр', price: 7.00, desc: 'Яйцо, ветчина, помидоры, сыр, специи, зелень' },
+            { cat: 'hot', name: 'Яичница с беконом', weight: '200 гр', price: 7.00, desc: 'Яйцо, бекон, специи, зелень' },
+            { cat: 'hot', name: 'Оладушки со сметаной и вареньем', weight: '170/80 гр', price: 5.00, desc: 'Оладьи, сметана, варенье' },
+
+            // Пельмени, Вареники & Фри
+            { cat: 'dumplings', name: 'Пельмени отварные со сметаной', weight: '300 гр', price: 7.00, desc: 'Собственное производство, ручная лепка (свинина, сметана, масло)' },
+            { cat: 'dumplings', name: 'Пельмени, запечённые с сыром в горшочке', weight: '285 гр', price: 7.00, desc: 'Пельмени со свининой, сметана, сыр, зелень' },
+            { cat: 'dumplings', name: 'Пельмени жареные', weight: '250 гр', price: 7.00, desc: 'Пельмени со свининой, обжаренные во фритюре' },
+            { cat: 'dumplings', name: 'Вареники «Домашние»', weight: '240/20 гр', price: 6.00, desc: 'Вареники с картошкой и грибами, масло сливочное' },
+            { cat: 'dumplings', name: 'Пивной сет + подарок 0.5л пиво', weight: '620/40/40/2 гр', price: 26.00, desc: 'Куриные крылышки, колбаски, гренки с сыром, чипсы, картофель фри, соусы' },
+            { cat: 'dumplings', name: 'Куриные наггетсы', weight: '150 гр', price: 7.00, desc: 'Куриное филе в маринаде, обжаренное во фритюре' },
+            { cat: 'dumplings', name: 'Картофель фри', weight: '150 гр', price: 5.00, desc: 'Картофельная соломка во фритюре' },
+            { cat: 'dumplings', name: 'Картофель «По-деревенски»', weight: '150 гр', price: 5.00, desc: 'Картофельные дольки во фритюре' },
+            { cat: 'dumplings', name: 'Чипсы с соусом в ассортименте', weight: '60/40 гр', price: 3.00, desc: 'Чесночный, сырный, Цезарь, барбекю или кетчуп' },
+
+            // Салаты, Ассорти & Супы
+            { cat: 'salads', name: 'Мясная нарезка', weight: '200/30/20/5 гр', price: 13.00, desc: 'Полендвица, бекон, ветчина, салями, горчица, маслины' },
+            { cat: 'salads', name: 'Аккорд из солений', weight: '500 гр', price: 12.00, desc: 'Капуста, морковь по-корейски, огурец, помидор, чеснок, перец острый' },
+            { cat: 'salads', name: 'Ассорти овощное', weight: '350/10/10 гр', price: 10.00, desc: 'Огурец, помидор, перец болгарский, салат из капусты, маслины' },
+            { cat: 'salads', name: 'Карпаччо из говядины', weight: '225/20 гр', price: 19.00, desc: 'Говядина, сыр Пармезан, соус, лимон, зелень' },
+            { cat: 'salads', name: 'Карпаччо из сёмги', weight: '225/20 гр', price: 21.00, desc: 'Сёмга, сыр Пармезан, соус, лимон, зелень' },
+            { cat: 'salads', name: 'Салат Цезарь с креветками', weight: '220 гр', price: 13.00, desc: 'Креветки, яйцо, салатный лист, Пармезан, помидоры, сухарики, соус' },
+            { cat: 'salads', name: 'Салат Цезарь с курицей', weight: '220 гр', price: 10.00, desc: 'Курица, яйцо, салатный лист, Пармезан, помидоры, сухарики, соус' },
+            { cat: 'salads', name: 'Салат "Греческий"', weight: '230 гр', price: 10.00, desc: 'Салатный лист, огурец, помидор, перец, фета, лук, маслины' },
+            { cat: 'salads', name: 'Салат с птицей на гриле', weight: '230 гр', price: 10.00, desc: 'Куриное филе на гриле, цукини, помидор, огурец, заправка' },
+            { cat: 'salads', name: 'Тёплый салат с говядиной', weight: '240 гр', price: 13.00, desc: 'Говядина, баклажаны, цукини, перец, соус «Карри»' },
+            { cat: 'salads', name: 'Салат «Мясной»', weight: '240 гр', price: 10.00, desc: 'Курица, бекон, листья салата, яйцо, кетчуп, соус BBQ' },
+            { cat: 'salads', name: 'Салат «Сырный»', weight: '210 гр', price: 9.00, desc: 'Курица, шампиньоны, листья салата, соус сырный, Пармезан' },
+            { cat: 'salads', name: 'Фокачча', weight: '250/30 гр', price: 5.00, desc: 'Тесто, масло ароматное, специи, соус чесночный' },
+            { cat: 'salads', name: 'Бульон «Куринный» с яйцом', weight: '300 гр', price: 4.00, desc: 'Бульон куриный, яйцо, зелень' },
+            { cat: 'salads', name: 'Солянка мясная', weight: '300/30/10 гр', price: 5.00, desc: 'Солянка мясная, сметана, лимон, зелень' },
+            { cat: 'salads', name: 'Щи из свежей капусты', weight: '300/30 гр', price: 4.00, desc: 'Щи из свежей капусты, сметана, зелень' },
+            { cat: 'salads', name: 'Борщ со свеклой', weight: '300/30 гр', price: 4.00, desc: 'Борщ со свеклой, сметана, зелень' },
+            { cat: 'salads', name: 'Суп картофельный с грибами', weight: '300/30 гр', price: 4.00, desc: 'Суп картофельный с грибами, сметана, зелень' },
+
+            // Десерты
+            { cat: 'desserts', name: 'Мороженое в ассортименте', weight: '100 гр', price: 2.50, desc: 'Ванильное, шоколадное или клубничное' },
+            { cat: 'desserts', name: 'Молочный коктейль в ассортименте', weight: '250 мл', price: 3.50, desc: 'Ванильный, шоколадный, фруктовый, с бананом' }
+        ];
+
+        // Данные БАНКЕТНОГО МЕНЮ
+        const banketData = [
+            { cat: 'appetizers', name: 'Заливное из языка', weight: '800/70/10 гр', price: 27.00, desc: 'Язык говяжий, бульон, помидор, зелень' },
+            { cat: 'appetizers', name: 'Заливное ассорти', weight: '750/70/10 гр', price: 22.00, desc: 'Язык говяжий, курица, бульон, помидор, зелень' },
+            { cat: 'appetizers', name: 'Курица, фаршированная блинами', weight: 'цена за 100г', price: 3.00, desc: 'Курица, блинчики, шампиньоны, лук, морковь, огурец, помидор' },
+            { cat: 'appetizers', name: 'Шампиньоны фаршированные', weight: '150/5 гр', price: 7.00, desc: 'Шампиньоны, ветчина, лук, сыр, соус «Цезарь», салатный лист' },
+            { cat: 'appetizers', name: 'Блинчики с сёмгой', weight: '180/5 гр', price: 10.00, desc: 'Блинчики, сёмга, сыр творожный, салатный лист, зелень' },
+            { cat: 'appetizers', name: 'Блинчики с курицей и грибами', weight: '190 гр', price: 7.00, desc: 'Блинчики, курица, шампиньоны, сыр, зелень' },
+            { cat: 'appetizers', name: 'Волованы с икрой', weight: '50 гр', price: 5.00, desc: 'Тесто слоёное, сыр творожный, икра, зелень' },
+            { cat: 'appetizers', name: 'Волованы с сёмгой', weight: '60 гр', price: 4.00, desc: 'Тесто слоёное, сыр творожный, икра, зелень' },
+            { cat: 'appetizers', name: 'Помидоры с сыром и чесноком', weight: '260/10/5 гр', price: 7.00, desc: 'Помидоры, сыр, чесночный соус, маслины, зелень' },
+            { cat: 'appetizers', name: 'Рулетики из ветчины с творогом', weight: '200/10 гр', price: 7.00, desc: 'Ветчина, творог, перец болгарский, чеснок, майонез' },
+            { cat: 'appetizers', name: 'Рулетики из баклажан', weight: '200/10 гр', price: 8.00, desc: 'Баклажаны, сыр, майонез, грецкий орех, чеснок, зелень' },
+            { cat: 'salads', name: 'Салат «Дары моря»', weight: '200 гр', price: 14.00, desc: 'Креветки, кальмары, помидор, огурец, лимон, маслины, зелень' },
+            { cat: 'salads', name: 'Салат с сёмгой', weight: '215 гр', price: 14.00, desc: 'Сёмга сл/с, картофель, морковь, яйцо, огурец, икра, майонез' },
+            { cat: 'hot', name: 'Рулька в пиве', weight: 'цена за 100г', price: 3.50, desc: 'Рулька свиная в тёмном пиве с мёдом и горчицей, капуста маринованная' },
+            { cat: 'hot', name: 'Буженина с клюквенным соусом', weight: 'цена за 100г', price: 8.00, desc: 'Свинина запечённая в маринаде, клюквенный соус' },
+            { cat: 'hot', name: 'Кальмар, фаршированный грибами и креветками', weight: '180/20/5 гр', price: 14.00, desc: 'Кальмар, креветки, шампиньоны, лук, майонез, сыр' },
+            { cat: 'grill', name: 'Шашлык из свинины', weight: 'цена за 100г', price: 7.00, desc: 'Шейная часть свинины, лук маринованный' },
+            { cat: 'grill', name: 'Рёбрышки на мангале', weight: 'цена за 100г', price: 5.00, desc: 'Свиные рёбра, лук маринованный' }
+        ];
+
+        const mainCategories = [
+            { id: 'all', name: 'Всё меню' },
+            { id: 'pizza', name: '🍕 Пицца' },
+            { id: 'mini_pizza', name: '🍕 Мини-пицца' },
+            { id: 'shawarma', name: '🌯 Шаурма' },
+            { id: 'hot', name: '🍳 Горячее & Драники' },
+            { id: 'dumplings', name: '🥟 Пельмени & Закуски' },
+            { id: 'salads', name: '🥗 Салаты & Супы' },
+            { id: 'desserts', name: '🍦 Десерты' }
+        ];
+
+        const banketCategories = [
+            { id: 'all', name: 'Всё банкетное' },
+            { id: 'appetizers', name: '🥗 Закуски & Нарезки' },
+            { id: 'salads', name: '🥣 Праздничные салаты' },
+            { id: 'hot', name: '🍖 Горячие банкетные блюда' },
+            { id: 'grill', name: '🔥 Гриль & Мангал' }
+        ];
+
+        let cart = [];
+        let orderType = 'pickup'; // 'pickup' или 'delivery'
+        const MIN_DELIVERY_AMOUNT = 30.00;
+        let toastTimeout;
+
+        function init() {
+            renderMainCategories();
+            renderMenu('all');
+            renderBanketCategories();
+            renderBanketMenu('all');
+        }
+
+        // Логика Основного Меню
+        function renderMainCategories() {
+            const container = document.getElementById('categories');
+            container.innerHTML = mainCategories.map((c, i) => `
+                <button onclick="filterMenu('${c.id}', this)" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition ${i===0 ? 'bg-amber-500 text-white border-amber-500' : 'bg-white text-gray-600 border-gray-200 hover:border-amber-400'}">
+                    ${c.name}
+                </button>
+            `).join('');
+        }
+
+        function filterMenu(catId, btn) {
+            document.querySelectorAll('#categories button').forEach(b => {
+                b.className = "px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition bg-white text-gray-600 border-gray-200 hover:border-amber-400";
+            });
+            btn.className = "px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition bg-amber-500 text-white border-amber-500";
+            renderMenu(catId);
+        }
+
+        function renderMenu(catId) {
+            const grid = document.getElementById('menu-grid');
+            const items = catId === 'all' ? menuData : menuData.filter(i => i.cat === catId);
+            grid.innerHTML = items.map(item => createCardHtml(item, 'bg-white', 'text-gray-900', 'border-gray-100')).join('');
+        }
+
+        // Логика Банкетного Меню
+        function renderBanketCategories() {
+            const container = document.getElementById('banket-categories');
+            container.innerHTML = banketCategories.map((c, i) => `
+                <button onclick="filterBanket('${c.id}', this)" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition ${i===0 ? 'bg-amber-500 text-white border-amber-500' : 'bg-stone-800 text-gray-300 border-stone-700 hover:border-amber-400'}">
+                    ${c.name}
+                </button>
+            `).join('');
+        }
+
+        function filterBanket(catId, btn) {
+            document.querySelectorAll('#banket-categories button').forEach(b => {
+                b.className = "px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition bg-stone-800 text-gray-300 border-stone-700 hover:border-amber-400";
+            });
+            btn.className = "px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition bg-amber-500 text-white border-amber-500";
+            renderBanketMenu(catId);
+        }
+
+        function renderBanketMenu(catId) {
+            const grid = document.getElementById('banket-grid');
+            const items = catId === 'all' ? banketData : banketData.filter(i => i.cat === catId);
+            grid.innerHTML = items.map(item => createCardHtml(item, 'bg-stone-800', 'text-white', 'border-stone-700')).join('');
+        }
+
+        function createCardHtml(item, bgClass, textClass, borderClass) {
+            return `
+                <div class="${bgClass} rounded-2xl p-5 border ${borderClass} shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="font-bold ${textClass} leading-snug text-base">${item.name}</h3>
+                            <span class="text-xs bg-amber-500/10 text-amber-500 px-2 py-1 rounded-md whitespace-nowrap font-medium">${item.weight}</span>
+                        </div>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">${item.desc}</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-3 border-t border-stone-700/50">
+                        <span class="font-bold text-amber-400 text-lg">${item.price.toFixed(2)} <span class="text-xs">BYN</span></span>
+                        <button onclick="addToCart('${item.name}', ${item.price})" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold px-3 py-2 rounded-lg transition flex items-center space-x-1">
+                            <i class="fa-solid fa-plus text-xs"></i>
+                            <span>Заказать</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Показ всплывающего уведомления
+        function showToast(name) {
+            const toast = document.getElementById('toast-notification');
+            const msg = document.getElementById('toast-message');
+            
+            msg.textContent = name;
+            
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            if(toastTimeout) clearTimeout(toastTimeout);
+            
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Корзина и переключение самовывоза/доставки
+        function setOrderType(type) {
+            orderType = type;
+            const btnPickup = document.getElementById('type-pickup');
+            const btnDelivery = document.getElementById('type-delivery');
+            const deliveryInfo = document.getElementById('delivery-info');
+            const addressField = document.getElementById('address-field');
+
+            if(type === 'pickup') {
+                btnPickup.className = "py-2 text-xs font-bold rounded-lg transition bg-white shadow-sm text-gray-900";
+                btnDelivery.className = "py-2 text-xs font-bold rounded-lg transition text-gray-500";
+                deliveryInfo.classList.add('hidden');
+                addressField.classList.add('hidden');
+            } else {
+                btnDelivery.className = "py-2 text-xs font-bold rounded-lg transition bg-white shadow-sm text-gray-900";
+                btnPickup.className = "py-2 text-xs font-bold rounded-lg transition text-gray-500";
+                deliveryInfo.classList.remove('hidden');
+                addressField.classList.remove('hidden');
+            }
+            updateCart();
+        }
+
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) { existing.count++; } else { cart.push({ name, price, count: 1 }); }
+            updateCart();
+            showToast(name);
+        }
+
+        function changeQuantity(name, delta) {
+            const item = cart.find(i => i.name === name);
+            if(item) {
+                item.count += delta;
+                if(item.count <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const countEl = document.getElementById('cart-count');
+            const itemsEl = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const deliveryStatusText = document.getElementById('delivery-status-text');
+
+            const totalCount = cart.reduce((sum, i) => sum + i.count, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.count), 0);
+
+            countEl.textContent = totalCount;
+            totalEl.textContent = totalPrice.toFixed(2) + ' BYN';
+
+            if(cart.length === 0) {
+                itemsEl.innerHTML = '<p class="text-gray-400 text-center py-8 text-sm">Ваша корзина пока пуста</p>';
+                if(orderType === 'delivery') {
+                    deliveryStatusText.innerHTML = `Добавьте блюда на сумму от <strong>${MIN_DELIVERY_AMOUNT.toFixed(2)} BYN</strong>`;
+                }
+                return;
+            }
+
+            itemsEl.innerHTML = cart.map(item => `
+                <div class="py-3 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold text-sm text-gray-800">${item.name}</p>
+                        <p class="text-xs text-gray-400">${item.price.toFixed(2)} BYN</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="changeQuantity('${item.name}', -1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded">-</button>
+                        <span class="text-xs font-bold text-gray-800">${item.count}</span>
+                        <button onclick="changeQuantity('${item.name}', 1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-bold rounded">+</button>
+                        <span class="font-bold text-sm text-emerald-700 ml-2">${(item.price * item.count).toFixed(2)} BYN</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Проверка минималки на доставку
+            if(orderType === 'delivery') {
+                if(totalPrice < MIN_DELIVERY_AMOUNT) {
+                    const diff = (MIN_DELIVERY_AMOUNT - totalPrice).toFixed(2);
+                    deliveryStatusText.innerHTML = `Добавьте ещё блюд на <strong class="text-red-600">${diff} BYN</strong> для оформления доставки.`;
+                } else {
+                    deliveryStatusText.innerHTML = `<span class="text-green-700 font-bold">✓ Отлично! Сумма достаточна для курьерской доставки.</span>`;
+                }
+            }
+        }
+
+        // Валидация номера Беларуси (+375...)
+        function validateBYPhone(phone) {
+            const cleaned = phone.replace(/\D/g, '');
+            if(cleaned.startsWith('375') && cleaned.length === 12) return true;
+            if(cleaned.startsWith('80') && cleaned.length === 11) return true;
+            return false;
+        }
+
+        function sendOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+
+            const nameError = document.getElementById('name-error');
+            const phoneError = document.getElementById('phone-error');
+            const addressError = document.getElementById('address-error');
+
+            let isValid = true;
+
+            // 1. Проверка наличия блюд в корзине
+            if(cart.length === 0) {
+                alert('Ваша корзина пуста! Добавьте хотя бы одно блюдо.');
+                return;
+            }
+
+            // 2. Проверка Имени
+            if(!name) {
+                nameError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                nameError.classList.add('hidden');
+            }
+
+            // 3. Проверка номера телефона Беларуси
+            if(!validateBYPhone(phone)) {
+                phoneError.classList.remove('hidden');
+                isValid = false;
+            } else {
+                phoneError.classList.add('hidden');
+            }
+
+            // 4. Проверка доставки и минимальной суммы в 30 BYN
+            const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.count), 0);
+
+            if(orderType === 'delivery') {
+                if(!address) {
+                    addressError.classList.remove('hidden');
+                    isValid = false;
+                } else {
+                    addressError.classList.add('hidden');
+                }
+
+                if(totalPrice < MIN_DELIVERY_AMOUNT) {
+                    const diff = (MIN_DELIVERY_AMOUNT - totalPrice).toFixed(2);
+                    alert(`Минимальный заказ для доставки — 30.00 BYN. Вам не хватает ${diff} BYN!`);
+                    return;
+                }
+            }
+
+            if(!isValid) return;
+
+            // Успешное оформление
+            const typeText = orderType === 'delivery' ? `Доставка на адрес: ${address}` : 'Самовывоз из кафе (ул. Ромашко, 5)';
+            alert(`Спасибо, ${name}!\nВаш заказ на сумму ${totalPrice.toFixed(2)} BYN принят.\nФормат: ${typeText}.\nМы свяжемся с вами по номеру ${phone}!`);
+
+            cart = [];
+            document.getElementById('cust-name').value = '';
+            document.getElementById('cust-phone').value = '';
+            document.getElementById('cust-address').value = '';
+            updateCart();
+            toggleCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        init();
+    </script>
+</body>
+</html>
