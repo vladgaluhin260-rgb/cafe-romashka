@@ -139,11 +139,19 @@
                     </div>
                 </div>
 
-                <div class="pt-3 border-t border-zinc-800 flex items-center space-x-3">
-                    <span class="text-xs text-zinc-400">Instagram:</span>
-                    <a href="https://instagram.com" target="_blank" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow hover:opacity-90 transition">
-                        @caferomashka_
-                    </a>
+                <div class="space-y-3 pt-3 border-t border-zinc-800">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xs text-zinc-400">Instagram:</span>
+                        <a href="https://www.instagram.com/caferomashka_" target="_blank" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow hover:opacity-90 transition">
+                            @caferomashka_
+                        </a>
+                    </div>
+                    <!-- Юридическая ссылка в футере -->
+                    <div>
+                        <a href="#" onclick="openPrivacyModal(); return false;" class="text-[11px] text-zinc-500 hover:text-zinc-300 underline transition">
+                            Политика в отношении обработки персональных данных
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -217,6 +225,14 @@
                     <input type="tel" id="customer-phone" placeholder="+375 (XX) XXX-XX-XX *" class="w-full px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-2xl text-sm font-medium text-zinc-100">
                 </div>
 
+                <!-- Чекбокс согласия с персональными данными (Закон РБ) -->
+                <div class="flex items-start space-x-2.5 pt-1">
+                    <input type="checkbox" id="privacy-policy-cart" class="mt-0.5 w-4 h-4 rounded accent-amber-500 cursor-pointer">
+                    <label for="privacy-policy-cart" class="text-[11px] text-zinc-400 leading-tight cursor-pointer">
+                        Я даю согласие на обработку моих персональных данных в соответствии с <span onclick="openPrivacyModal()" class="text-amber-400 underline">политикой конфиденциальности</span> *
+                    </label>
+                </div>
+
                 <div class="flex justify-between items-center text-lg font-black pt-1">
                     <span class="text-zinc-300">Итого:</span>
                     <span id="cart-total-price" class="text-amber-400">0.00 BYN</span>
@@ -258,9 +274,39 @@
                     </div>
                 </div>
 
+                <!-- Чекбокс согласия с персональными данными для банкета -->
+                <div class="flex items-start space-x-2.5 pt-1">
+                    <input type="checkbox" id="privacy-policy-banquet" class="mt-0.5 w-4 h-4 rounded accent-amber-500 cursor-pointer">
+                    <label for="privacy-policy-banquet" class="text-[11px] text-zinc-400 leading-tight cursor-pointer">
+                        Я даю согласие на обработку моих персональных данных в соответствии с <span onclick="openPrivacyModal()" class="text-amber-400 underline">политикой конфиденциальности</span> *
+                    </label>
+                </div>
+
                 <button onclick="submitBanquetInquiry()" class="w-full bg-amber-500 hover:bg-amber-400 text-zinc-950 py-3.5 rounded-2xl font-black text-sm shadow-lg transition mt-2">
                     Отправить заявку
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-zinc-800 w-full sm:max-w-2xl rounded-3xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-950">
+                <h3 class="font-serif-heading font-bold text-base text-amber-400">Политика конфиденциальности</h3>
+                <button onclick="closePrivacyModal()" class="w-8 h-8 bg-zinc-800 rounded-full flex items-center justify-center text-zinc-400 hover:text-white font-bold">✕</button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-4 text-xs text-zinc-300 leading-relaxed">
+                <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Закона Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных» и определяет порядок сбора персональных данных и меры по обеспечению безопасности персональных данных кафе «Ромашка» (г. Могилёв, ул. Ромашко, 5).</p>
+                <h4 class="font-bold text-zinc-100 mt-3">1. Какие данные мы собираем</h4>
+                <p>Мы собираем только те персональные данные, которые вы добровольно предоставляете при оформлении заказа или заполнении формы заявки: ваше имя и номер телефона.</p>
+                <h4 class="font-bold text-zinc-100 mt-3">2. Цель сбора данных</h4>
+                <p>Указанные данные используются исключительно для связи с вами с целью подтверждения заказа, организации доставки или бронирования столиков и банкетного обслуживания.</p>
+                <h4 class="font-bold text-zinc-100 mt-3">3. Защита информации</h4>
+                <p>Администрация кафе принимает все необходимые организационные и технические меры для защиты персональных данных пользователей от неправомерного доступа.</p>
+            </div>
+            <div class="p-4 border-t border-zinc-800 bg-zinc-950 text-right">
+                <button onclick="closePrivacyModal()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-5 py-2 rounded-xl text-xs font-bold transition">Закрыть</button>
             </div>
         </div>
     </div>
@@ -544,13 +590,25 @@
             document.getElementById('banquet-modal').classList.add('hidden');
         }
 
+        function openPrivacyModal() {
+            document.getElementById('privacy-modal').classList.remove('hidden');
+        }
+
+        function closePrivacyModal() {
+            document.getElementById('privacy-modal').classList.add('hidden');
+        }
+
         function submitOrder() {
             const name = document.getElementById('customer-name').value.trim();
             const phone = document.getElementById('customer-phone').value.trim();
+            const privacyChecked = document.getElementById('privacy-policy-cart').checked;
+
             if (!name) return alert('Введите ваше имя');
 
             const phoneRegex = /^(\+375|80)\s?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
             if (!phoneRegex.test(phone)) return alert('Введите корректный номер телефона (например, +375 29 123-45-67)');
+
+            if (!privacyChecked) return alert('Необходимо подтвердить согласие на обработку персональных данных');
 
             if (Object.keys(cart).length === 0) return alert('Ваша корзина пуста');
 
@@ -563,11 +621,14 @@
         function submitBanquetInquiry() {
             const name = document.getElementById('banquet-name').value.trim();
             const phone = document.getElementById('banquet-phone').value.trim();
+            const privacyChecked = document.getElementById('privacy-policy-banquet').checked;
 
             if (!name) return alert('Введите ваше имя');
 
             const phoneRegex = /^(\+375|80)\s?\(?\d{2}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$/;
             if (!phoneRegex.test(phone)) return alert('Введите корректный номер телефона');
+
+            if (!privacyChecked) return alert('Необходимо подтвердить согласие на обработку персональных данных');
 
             alert(`Спасибо, ${name}! Заявка на «${selectedBanquetDish}» принята. Администратор свяжется с вами.`);
             closeBanquetModal();
